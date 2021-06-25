@@ -3,88 +3,10 @@
  */
 package pw.orange;
 
-import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileElement;
-import org.openqa.selenium.By;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.concurrent.TimeUnit;
-
-
 public class App {
 
-    static AppiumDriver<MobileElement> driver;
-
-    public static void openApp() throws MalformedURLException {
-        String filePath = "C:/temp/jakdojade-public-transport.apk";
-
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("platformName", "Android");
-        capabilities.setCapability("platformVersion", "7.1.1");
-        capabilities.setCapability("deviceName", "android emulator");
-        capabilities.setCapability("appPackage", "com.citynav.jakdojade.pl.android");
-        capabilities.setCapability("appActivity", "com.citynav.jakdojade.pl.android.main.MainActivity");
-        capabilities.setCapability("automationName", "UiAutomator2");
-
-        URL serverURL = new URL("http://127.0.0.1:4723/wd/hub");
-        driver = new AppiumDriver<MobileElement>(serverURL, capabilities);
-
-        System.out.println("App started...");
-
-        // Click the browse cities button
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        MobileElement browseCitiesButton = driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[2]/android.widget.FrameLayout/android.widget.LinearLayout"));
-        browseCitiesButton.click();
-
-        // Search for Warszawa
-        MobileElement citiesSearchBar = driver.findElement(By.id("com.citynav.jakdojade.pl.android:id/et_search_city"));
-        citiesSearchBar.sendKeys("Warszawa");
-
-        MobileElement citiesSearchResult = driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[1]/android.widget.LinearLayout[1]/android.widget.LinearLayout/android.widget.TextView"));
-        String searchResult = "Wait";
-        searchResult = citiesSearchResult.getText();
-        System.out.println("\nChosen city is: " + searchResult);
-        citiesSearchResult.click();
-        // continue button
-        MobileElement continueButton = driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.FrameLayout/android.widget.LinearLayout"));
-        continueButton.click();
-
-        // click the terms button
-        MobileElement acceptTermsButton = driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout/android.widget.LinearLayout/android.webkit.WebView/android.webkit.WebView/android.view.View[2]/android.view.View/android.view.View[2]/android.widget.Button[2]"));
-        acceptTermsButton.click();
-        // ignore app request
-        MobileElement ignoreNavRequestButton = driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout[1]/android.widget.FrameLayout/android.widget.LinearLayout"));
-        ignoreNavRequestButton.click();
-
-        MobileElement timetablesButton = driver.findElement(By.id("com.citynav.jakdojade.pl.android:id/timetables"));
-        timetablesButton.click();
-
-        MobileElement linesSearchBar = driver.findElement(By.id("com.citynav.jakdojade.pl.android:id/act_wl_search_input"));
-        linesSearchBar.sendKeys("501");
-        linesSearchBar.click();
-        MobileElement busResultButton = driver.findElement(By.id("com.citynav.jakdojade.pl.android:id/act_lsearch_line_name"));
-        searchResult = busResultButton.getText();
-        System.out.println("\nChosen bus is: " + searchResult);
-        busResultButton.click();
-
-        MobileElement firstStopText = driver.findElement(By.id("com.citynav.jakdojade.pl.android:id/act_l_stops_from_txt"));
-        String result = firstStopText.getText();
-
-        System.out.println("\nThe first stop of line 501 is: " + result);
-
-        System.out.println("App finished...");
-
-    }
 
     public static void main(String[] args){
-        try {
-            openApp();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+
     }
 }
