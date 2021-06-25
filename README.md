@@ -1,7 +1,7 @@
 # Zadanie na praktyki letnie Orange
 
 
-### Aby uruchomiæ scenariusz testowy, nale¿y wykonaæ komendê
+### Aby uruchomiæ scenariusz testowy, nale¿y uruchomiæ serwer appium na porcie 4723, zacz¹æ emulacjê urz¹dzenia (lub pod³¹czyæ fizyczne) i wykonaæ komendê:
 
 ```bash
 ./gradlew test
