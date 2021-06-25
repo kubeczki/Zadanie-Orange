@@ -1,4 +1,4 @@
-# Project template PROZ
+# Zadanie na praktyki letnie Orange
 
 ## Run
 ```bash

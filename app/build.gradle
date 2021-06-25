@@ -8,20 +8,34 @@
 
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
+    id 'java'
     id 'application'
 }
 
 repositories {
-    // Use JCenter for resolving dependencies.
-    jcenter()
+    mavenCentral()
+
+    maven { url 'https://jitpack.io' }
 }
 
 dependencies {
     // Use JUnit test framework.
     testImplementation 'junit:junit:4.13'
+
+    // https://mvnrepository.com/artifact/io.appium/java-client
+    implementation group: 'io.appium', name: 'java-client', version: '7.5.1'
+    // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
+
+}
+
+test{
+    ignoreFailures = true
+    testLogging.showStandardStreams = true
+    testLogging.exceptionFormat = 'full'
 }
 
 application {
     // Define the main class for the application.
-    mainClass = 'pw.proz.App'
+    mainClass = 'pw.orange.App'
 }
