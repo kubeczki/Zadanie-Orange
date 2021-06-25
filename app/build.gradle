@@ -30,7 +30,6 @@ dependencies {
 }
 
 test{
-    ignoreFailures = true
     testLogging.showStandardStreams = true
     testLogging.exceptionFormat = 'full'
 }
